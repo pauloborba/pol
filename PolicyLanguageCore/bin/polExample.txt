@@ -1,0 +1,2 @@
+UserModel{password,email,location} noflow Log
+where Log = {org.slf4j.Logger};
