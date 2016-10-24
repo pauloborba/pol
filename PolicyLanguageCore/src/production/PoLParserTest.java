@@ -48,45 +48,44 @@ public class PoLParserTest
 	public static int generateJSONFile() throws FileNotFoundException, IOException
 	{
 		
-		String content = new Scanner(new File("src/polExample.txt")).useDelimiter("\\Z").next();
+		String languageInputContent = new Scanner(new File("src/polExample.txt")).useDelimiter("\\Z").next();
 	    
-		System.out.println( "POL File:\n" + content + "\n\n");
+		System.out.println( "POL File:\n" + languageInputContent + "\n\n");
 	    
-		setupParser(content);
+		parserSetup(languageInputContent);
 	
-		JSONObject output = new JSONObject();
+		JSONObject JSONStructuringObject = new JSONObject();
 		
-		String JSONResult = "";
+		String languageJsonOutput = "";
 		
 		try 
 		{
-			JSONResult = JSONBuilder(output, content);
+			languageJsonOutput = JSONBuilder(JSONStructuringObject, languageInputContent);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		
-		File file = new File("src/output.txt");
+		File outputFile = new File("src/output.txt");
 		
-		if (!file.exists()) {
-			file.createNewFile();
+		if (!outputFile.exists()) {
+			outputFile.createNewFile();
 		}
 
-		FileWriter fw = new FileWriter(file.getAbsoluteFile());
-		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write(JSONResult);
-		bw.close();
+		FileWriter filewriter = new FileWriter(outputFile.getAbsoluteFile());
+		BufferedWriter bufferedWriter = new BufferedWriter(filewriter);
+		bufferedWriter.write(languageJsonOutput);
+		bufferedWriter.close();
 		
 		System.out.println(tree.toStringTree(parser));
 		
 		return numberOfErrors;
 	}
 	
-	public static String JSONBuilder(JSONObject output, String content) throws JSONException
+	public static String JSONBuilder(JSONObject JSONStructuringObject, String content) throws JSONException
 	{
 		
 		Object[] modules = visit.getModules().toArray();
-		output.put("module", modules);
-		
+		JSONStructuringObject.put("module", modules);
 		
 		String constructValue = "";
 		
@@ -99,35 +98,36 @@ public class PoLParserTest
 			constructValue = "noflow";
 		}
 		
-		output.put("construct", constructValue);
+		JSONStructuringObject.put("construct", constructValue);
 		
 		JSONArray JSONClasses = new JSONArray();
 		
-		ArrayList<PoLClass> classes = visit.getClasses();
+		ArrayList<PoLClass> visitorClasses = visit.getClasses();
 		
-		for(int i = 0; i < classes.size(); i++)
+		for(int i = 0; i < visitorClasses.size(); i++)
 		{
-			JSONObject currentClass = new JSONObject();
-			currentClass.put("class-name", classes.get(i).getClassName());
+			JSONObject currentJSONClass = new JSONObject();
+			currentJSONClass.put("class-name", visitorClasses.get(i).getClassName());
 			
-			JSONArray JSONFieldsArray = new JSONArray();
-			ArrayList<String> fields = classes.get(i).getFields();
+			JSONArray JSONArrayOfFields = new JSONArray();
+			ArrayList<String> fields = visitorClasses.get(i).getFields();
 			
 			for(int j = 0; j < fields.size(); j++)
 			{
-				JSONFieldsArray.put(fields.get(j));
+				JSONArrayOfFields.put(fields.get(j));
 			}
-			currentClass.put("fields", JSONFieldsArray);
 			
-			JSONClasses.put(currentClass);
+			currentJSONClass.put("fields", JSONArrayOfFields);
+			
+			JSONClasses.put(currentJSONClass);
 		}
 		
-		output.put("classes", JSONClasses);
+		JSONStructuringObject.put("classes", JSONClasses);
 		
-		return output.toString();
+		return JSONStructuringObject.toString();
 	}
 	
-	public static void setupParser(String content)
+	public static void parserSetup(String content)
 	{
 		ANTLRInputStream input = new ANTLRInputStream( content );
 		
