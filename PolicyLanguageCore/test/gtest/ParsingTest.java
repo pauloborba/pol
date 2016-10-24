@@ -3,6 +3,7 @@ package gtest;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -11,13 +12,13 @@ import production.PoLParserTest;
 public class ParsingTest {
 
 	@Test
-	public void test() {
+	public void test() throws IOException {
 		
 		int numberOfErrors = 0;
 		
 		try 
 		{
-			numberOfErrors = PoLParserTest.testParser();
+			numberOfErrors = PoLParserTest.generateJSONFile();
 		} 
 		catch (FileNotFoundException e) 
 		{

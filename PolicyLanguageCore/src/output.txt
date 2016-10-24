@@ -1,0 +1,1 @@
+{"module":["Log","Log"],"classes":[{"fields":["password,email,location"],"class-name":"UserModel"}],"construct":"noflow"}
