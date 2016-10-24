@@ -3,8 +3,6 @@ language: java
 jdk:
 - oraclejdk8
 
-before_script : cd PolicyLanguageCore
-
 before_install: cd PolicyLanguageCore
 
 script: mvn test
