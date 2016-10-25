@@ -12,7 +12,7 @@
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>test</testSourceDirectory>
+    <testSourceDirectory>unit</testSourceDirectory>
     <resources>
       <resource>
         <directory>src</directory>
