@@ -24,7 +24,7 @@ import structure.PoLClass;
 import structure.PoLLexer;
 import structure.PoLParser;
  
-public class PoLParserTest
+public class PoLBuilder
 {
  
 	private static int numberOfErrors;
