@@ -48,7 +48,7 @@ public class PoLBuilder
 	public static int generateJSONFile() throws FileNotFoundException, IOException
 	{
 		
-		String languageInputContent = new Scanner(new File("src/polExample.txt")).useDelimiter("\\Z").next();
+		String languageInputContent = new Scanner(new File("src/PoLSenteces.txt")).useDelimiter("\\Z").next();
 	    
 		System.out.println( "POL File:\n" + languageInputContent + "\n\n");
 	    
