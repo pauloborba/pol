@@ -1,4 +1,5 @@
 // Generated from PoL.g4 by ANTLR 4.4
+// I made some changes on the source code :)
 
     package structure;
 
@@ -61,14 +62,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_prog; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterProg(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitProg(this);
-		}
+		
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitProg(this);
@@ -102,14 +96,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_module; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterModule(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitModule(this);
-		}
+		
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitModule(this);
@@ -143,15 +130,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_clazz; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterClazz(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitClazz(this);
-		}
-		@Override
+		
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitClazz(this);
 			else return visitor.visitChildren(this);
@@ -187,14 +166,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_fields; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterFields(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitFields(this);
-		}
+		
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitFields(this);
@@ -246,14 +218,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_program_parts; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterProgram_parts(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitProgram_parts(this);
-		}
+		
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitProgram_parts(this);
@@ -307,14 +272,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_sensitive_fields; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterSensitive_fields(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitSensitive_fields(this);
-		}
+		
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitSensitive_fields(this);
@@ -356,14 +314,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_sensitive_info; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterSensitive_info(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitSensitive_info(this);
-		}
+		
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitSensitive_info(this);
@@ -417,15 +368,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_where_clause; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterWhere_clause(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitWhere_clause(this);
-		}
-		@Override
+		
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitWhere_clause(this);
 			else return visitor.visitChildren(this);
@@ -471,14 +414,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_constraint; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterConstraint(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitConstraint(this);
-		}
+		
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitConstraint(this);
@@ -546,14 +482,7 @@ public class PoLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_constraint_declaration; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).enterConstraint_declaration(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PoLListener ) ((PoLListener)listener).exitConstraint_declaration(this);
-		}
+		
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PoLVisitor ) return ((PoLVisitor<? extends T>)visitor).visitConstraint_declaration(this);
