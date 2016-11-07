@@ -1,3 +1,5 @@
+//Generator for the JSON .txt output
+
 package production;
 
 //Creation of .txt output file.

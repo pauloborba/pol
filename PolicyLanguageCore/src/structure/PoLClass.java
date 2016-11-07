@@ -1,3 +1,4 @@
+// Data structure that corresponds to PoL Class
 package structure;
 
 import java.util.ArrayList;

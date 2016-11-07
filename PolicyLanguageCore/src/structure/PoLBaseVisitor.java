@@ -1,6 +1,7 @@
+//Visitor that stores the visited fields, classes and modules
 package structure;
 
-//Keeps the modules and classes that were visited
+//Stores the modules and classes that were visited
 import java.util.ArrayList; 
 //ANTLR visitor imports
 import org.antlr.v4.runtime.misc.NotNull;
