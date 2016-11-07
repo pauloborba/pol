@@ -1,10 +1,8 @@
 package structure;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
-
+//Keeps the modules and classes that were visited
+import java.util.ArrayList; 
+//ANTLR visitor imports
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
