@@ -6,7 +6,7 @@ jdk:
 before_install:
 - cd PolicyLanguage
 - sudo curl -O http://www.antlr.org/download/antlr-4.4-complete.jar
-- java antlr-4.4-complete.jar PoL.g4
+- java -jar antlr-4.4-complete.jar PoL.g4
 - cd ..
 - cp -n -a /PolicyLanguage/target/generated-sources/antlr4/. /PolicyLanguageCore/src/structure/
 - cd /PolicyLanguageCore
