@@ -8,7 +8,7 @@ before_install:
 - sudo curl -O http://www.antlr.org/download/antlr-4.4-complete.jar
 - java -jar antlr-4.4-complete.jar PoL.g4
 - cd ..
-- cp -n -r /PolicyLanguage/*  /PolicyLanguageCore/src/structure/
+- cp -n -r PolicyLanguage/.  PolicyLanguageCore/src/structure/
 - cd PolicyLanguageCore
 
 script: mvn test
