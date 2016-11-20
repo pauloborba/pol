@@ -38,9 +38,12 @@ public class PoLBuilder
 	
 	public static void main(String[] args) throws Exception 
 	{
-	    try
+		Scanner in = new Scanner(System.in);
+		System.out.println("Paste the file path below and press enter");
+		String filepath = in.nextLine();
+		try
 	    {
-	    	generateJSONFile();
+	    	generateJSONFile(filepath);
 	    }
 	    catch(Exception e)
 	    {
@@ -48,10 +51,10 @@ public class PoLBuilder
 	    }
 	}
 	
-	public static int generateJSONFile() throws FileNotFoundException, IOException
+	public static int generateJSONFile(String filepath) throws FileNotFoundException, IOException
 	{
 		
-		String languageInputContent = new Scanner(new File("PoLSentences.txt")).useDelimiter("\\Z").next();
+		String languageInputContent = new Scanner(new File(filepath)).useDelimiter("\\Z").next();
 	    
 		System.out.println( "POL File:\n" + languageInputContent + "\n\n");
 	    
