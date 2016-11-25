@@ -2,7 +2,10 @@
 package structure;
 
 //Stores the modules and classes that were visited
-import java.util.ArrayList; 
+import java.util.ArrayList;
+
+import org.antlr.v4.runtime.BufferedTokenStream;
+import org.antlr.v4.runtime.TokenStream;
 //ANTLR visitor imports
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
@@ -10,16 +13,13 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PoLVisitor<T> {
 	
-	private ArrayList<String> modules;
-	private ArrayList<PoLClass> classes;
-	public PoLClass currentClass;
-	
+	private PoLClass currentClass;
+	private Policy currentPolicy;
+	private ArrayList<Policy> policies;
 	
 	public PoLBaseVisitor()
 	{
-		modules = new ArrayList<String>();
-		classes = new ArrayList<PoLClass>();
-		
+		policies = new ArrayList<Policy>();
 	}
 	
 	@Override public T visitSensitive_info(@NotNull PoLParser.Sensitive_infoContext ctx) { return visitChildren(ctx); }
@@ -28,41 +28,50 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 	
 	@Override public T visitSensitive_fields(@NotNull PoLParser.Sensitive_fieldsContext ctx) { return visitChildren(ctx); }
 	
-	@Override public T visitConstraint_declaration(@NotNull PoLParser.Constraint_declarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitConstraint_declaration(@NotNull PoLParser.Constraint_declarationContext ctx) 
+	{ 
+		return visitChildren(ctx); 
+	}
 	
-	@Override public T visitConstraint(@NotNull PoLParser.ConstraintContext ctx) { return visitChildren(ctx); }
+	//Starts a new Policy and add the construct to it
+	@Override public T visitConstraint(@NotNull PoLParser.ConstraintContext ctx) { 
+		currentPolicy = new Policy();
+		String construct = ctx.getChild(1).getText();
+		currentPolicy.setConstruct(construct);
+		policies.add(currentPolicy);
+		return visitChildren(ctx); 
+	}
 	
 	@Override public T visitProg(@NotNull PoLParser.ProgContext ctx) { return visitChildren(ctx); }
 	
 	@Override public T visitProgram_parts(@NotNull PoLParser.Program_partsContext ctx) { return visitChildren(ctx); }
 	
+	//Add the modules to the current policy
 	@Override public T visitModule(@NotNull PoLParser.ModuleContext ctx) 
 	{ 
-		modules.add(ctx.getText());
+		currentPolicy.addModule(ctx.getText());
 		return visitChildren(ctx); 
 	}
 	
+	//Add the fields to the current class of the current policy
 	@Override public T visitFields(@NotNull PoLParser.FieldsContext ctx) 
 	{ 
 		currentClass.addField(ctx.getText());
 		return visitChildren(ctx); 
 	}
 	
+	//Add the class to the current policy
 	@Override public T visitClazz(@NotNull PoLParser.ClazzContext ctx) 
 	{ 
 		currentClass = new PoLClass();
 		currentClass.setClassName(ctx.getText());
-		classes.add(currentClass);
+		currentPolicy.addClass(currentClass);
 		return visitChildren(ctx); 
 	}
 	
-	public ArrayList<String> getModules()
+	public ArrayList<Policy> getPolicies()
 	{
-		return modules;
+		return policies;
 	}
 	
-	public ArrayList<PoLClass> getClasses()
-	{
-		return classes;
-	}
 }

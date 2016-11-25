@@ -4,7 +4,7 @@ grammar PoL;
     package structure;
 }
 
-prog : constraint_declaration;
+prog : constraint_declaration*;
 
 ID :    LETTER(LETTER|DIGIT)*;             // match lower-case identifiers
 PROG_PART :  ID('.'ID)*;

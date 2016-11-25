@@ -1,4 +1,4 @@
-// Data structure that corresponds to PoL Class
+// Data structure that corresponds to Policy Class
 package structure;
 
 import java.util.ArrayList;
