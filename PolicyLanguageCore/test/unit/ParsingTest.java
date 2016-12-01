@@ -18,7 +18,7 @@ public class ParsingTest {
 		
 		try 
 		{
-			numberOfErrors = PoLBuilder.generateJSONFile("test/unit/PoLSentences.txt");
+			numberOfErrors = PoLBuilder.generateJSONFile("test/sentences/PoLSentences.txt");
 		} 
 		catch (FileNotFoundException e) 
 		{

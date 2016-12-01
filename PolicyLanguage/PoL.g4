@@ -7,7 +7,7 @@ grammar PoL;
 prog : constraint_declaration*;
 
 ID :    LETTER(LETTER|DIGIT)*;             // match lower-case identifiers
-PROG_PART :  ID('.'ID)*;
+PROG_PART :  ID('.'ID)*('('')')?;
 LETTER: [a-zA-Z];
 DIGIT:  [0-9];
 
@@ -15,7 +15,7 @@ WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 
 module : ID;
 
-clazz : ID;
+clazz : ID | PROG_PART;
 
 fields  : ID(','ID)*;
 

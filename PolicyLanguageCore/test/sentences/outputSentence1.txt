@@ -1,0 +1,12 @@
+{
+  "module": {
+  "identifiers": ["severe()", "warning()"]
+  },
+  "classes": [
+  {
+  "fields": ["registrationKey ", "email"],
+  "class-name": "teammates.storage.entity.CourseStudent"
+  }
+  ],
+  "construct": "noflow"
+};

@@ -101,9 +101,9 @@ public class PoLBuilder {
 
 		buildModules(policy, JSONStructuringObject);
 
-		buildConstruct(policy, JSONStructuringObject);
-
 		buildClasses(policy, JSONStructuringObject);
+		
+		buildConstruct(policy, JSONStructuringObject);
 
 		return JSONStructuringObject.toString();
 	}
@@ -123,7 +123,15 @@ public class PoLBuilder {
 
 	// Builds the JSON module objects
 	public static void buildModules(Policy policy, JSONObject JSONStructuringObject) throws JSONException {
-		JSONStructuringObject.put("module", policy.getModules().toArray());
+		JSONObject identifiers = new JSONObject();
+		JSONArray jsonModules = new JSONArray();
+		ArrayList<String> modules = policy.getModules();
+		for(int i = 0; i < modules.size(); i++)
+		{
+			jsonModules.put(modules.get(i));
+		}
+		identifiers.put("identifiers", jsonModules);
+		JSONStructuringObject.put("module", identifiers );
 	}
 
 	// Builds the JSON field objects

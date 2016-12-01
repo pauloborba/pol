@@ -3,12 +3,14 @@ package structure;
 
 //Stores the modules and classes that were visited
 import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 //ANTLR visitor imports
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 
 public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PoLVisitor<T> {
@@ -44,19 +46,36 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 	
 	@Override public T visitProg(@NotNull PoLParser.ProgContext ctx) { return visitChildren(ctx); }
 	
-	@Override public T visitProgram_parts(@NotNull PoLParser.Program_partsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitProgram_parts(@NotNull PoLParser.Program_partsContext ctx) 
+	{ 
+		List<ParseTree> modules = ctx.children;
+		for(int i = 0; i < modules.size(); i++)
+		{
+			if(!modules.get(i).getText().equals(","))
+			{
+				currentPolicy.addModule(modules.get(i).getText());
+			}
+		}
+		return visitChildren(ctx); 
+	}
 	
 	//Add the modules to the current policy
 	@Override public T visitModule(@NotNull PoLParser.ModuleContext ctx) 
 	{ 
-		currentPolicy.addModule(ctx.getText());
 		return visitChildren(ctx); 
 	}
 	
 	//Add the fields to the current class of the current policy
 	@Override public T visitFields(@NotNull PoLParser.FieldsContext ctx) 
 	{ 
-		currentClass.addField(ctx.getText());
+		List<ParseTree> fields = ctx.children;
+		for(int i = 0; i < fields.size(); i++)
+		{
+			if(!fields.get(i).getText().equals(","))
+			{
+				currentClass.addField(fields.get(i).getText());
+			}
+		}
 		return visitChildren(ctx); 
 	}
 	
