@@ -46,6 +46,7 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 	
 	@Override public T visitProg(@NotNull PoLParser.ProgContext ctx) { return visitChildren(ctx); }
 	
+	//Add the modules to the current policy
 	@Override public T visitProgram_parts(@NotNull PoLParser.Program_partsContext ctx) 
 	{ 
 		List<ParseTree> modules = ctx.children;
@@ -59,7 +60,6 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		return visitChildren(ctx); 
 	}
 	
-	//Add the modules to the current policy
 	@Override public T visitModule(@NotNull PoLParser.ModuleContext ctx) 
 	{ 
 		return visitChildren(ctx); 

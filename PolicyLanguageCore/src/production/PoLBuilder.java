@@ -41,22 +41,30 @@ public class PoLBuilder {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Paste the file path below and press enter");
 		String filepath = in.nextLine();
-		try {
+		try 
+		{
 			generateJSONFile(filepath);
-		} catch (Exception e) {
+		} 
+		catch (FileNotFoundException e) 
+		{
 			System.out.println("File not found");
 		}
+		catch(IOException e)
+		{
+			System.out.println("JSON input");
+		}
+		
 	}
 
 	// Build and creates the JSON output file
 	public static int generateJSONFile(String filepath) throws FileNotFoundException, IOException {
 		finalOutput = "";
 
-		String languageInputContent = new Scanner(new File(filepath)).useDelimiter("\\Z").next();
+		String inputPolicies = new Scanner(new File(filepath)).useDelimiter("\\Z").next();
 
-		System.out.println("POL File:\n" + languageInputContent + "\n\n");
+		System.out.println("POL File:\n" + inputPolicies + "\n\n");
 
-		visitTree(languageInputContent);
+		visitTree(inputPolicies);
 
 		ArrayList<Policy> policies = visitor.getPolicies();
 
@@ -134,16 +142,6 @@ public class PoLBuilder {
 		JSONStructuringObject.put("module", identifiers );
 	}
 
-	// Builds the JSON field objects
-	public static void buildFields(JSONArray JSONArrayOfFields, JSONObject JSONClass, ArrayList<String> fields)
-			throws JSONException {
-		for (int j = 0; j < fields.size(); j++) {
-			JSONArrayOfFields.put(fields.get(j));
-		}
-
-		JSONClass.put("fields", JSONArrayOfFields);
-	}
-
 	// Builds the JSON class objects
 	public static void buildClasses(Policy policy, JSONObject JSONStructuringObject) throws JSONException {
 		JSONArray JSONClasses = new JSONArray();
@@ -151,6 +149,7 @@ public class PoLBuilder {
 		ArrayList<PoLClass> visitorClasses = policy.getClazz();
 
 		for (int i = 0; i < visitorClasses.size(); i++) {
+			
 			JSONObject currentJSONClass = new JSONObject();
 			currentJSONClass.put("class-name", visitorClasses.get(i).getClassName());
 
@@ -164,6 +163,16 @@ public class PoLBuilder {
 
 		JSONStructuringObject.put("classes", JSONClasses);
 	}
+	
+	// Builds the JSON field objects
+		public static void buildFields(JSONArray JSONArrayOfFields, JSONObject JSONClass, ArrayList<String> fields)
+				throws JSONException {
+			for (int j = 0; j < fields.size(); j++) {
+				JSONArrayOfFields.put(fields.get(j));
+			}
+
+			JSONClass.put("fields", JSONArrayOfFields);
+		}
 
 	// Initialize the parser and build the syntax tree
 	public static void visitTree(String content) {

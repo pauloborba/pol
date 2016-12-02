@@ -23,7 +23,6 @@ public class ParsingTest {
 		catch (FileNotFoundException e) 
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			fail("File not found");
 		}
 		if(numberOfErrors > 0){
