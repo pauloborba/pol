@@ -1,7 +1,7 @@
 package structure;
-//Data structure that corresponds to the Policy
 import java.util.ArrayList;
 
+//Data structure that corresponds to the Policy
 public class Policy {
 	
 	private ArrayList<String> modules;

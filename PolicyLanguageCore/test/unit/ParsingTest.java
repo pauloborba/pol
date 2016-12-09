@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import production.PoLBuilder;
+import production.PolicyBuilder;
 
 public class ParsingTest {
 
@@ -15,18 +15,17 @@ public class ParsingTest {
 	public void test() throws IOException {
 		
 		int numberOfErrors = 0;
-		
+		String inputFilePath = "test/sentences/PoLSentences.txt";
 		try 
 		{
-			numberOfErrors = PoLBuilder.generateJSONFile("test/sentences/PoLSentences.txt");
+			numberOfErrors = PolicyBuilder.generateJSONPolicies(inputFilePath);
 		} 
 		catch (FileNotFoundException e) 
 		{
-			// TODO Auto-generated catch block
-			fail("File not found");
+			fail("File " + inputFilePath + " not found");
 		}
 		if(numberOfErrors > 0){
-			fail("Parsing errors occured");
+			fail(numberOfErrors + " parsing errors occured");
 		}
 	}
 
