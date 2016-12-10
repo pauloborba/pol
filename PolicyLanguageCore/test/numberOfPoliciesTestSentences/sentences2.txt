@@ -1,0 +1,3 @@
+Find noset Notepad {textPane};
+UserModels{hue,lol,br} noflow Mac
+where Mac = {org.slf4j.Logger};
