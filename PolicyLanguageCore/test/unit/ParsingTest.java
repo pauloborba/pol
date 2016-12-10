@@ -12,10 +12,10 @@ import production.PolicyBuilder;
 public class ParsingTest {
 
 	@Test
-	public void test() throws IOException {
+	public void test(){
 		
 		int numberOfErrors = 0;
-		String inputFilePath = "test/sentences/PoLSentences.txt";
+		String inputFilePath = "test/parsingTestSentences/PoLSentences.txt";
 		try 
 		{
 			numberOfErrors = PolicyBuilder.generateJSONPolicies(inputFilePath);
@@ -23,6 +23,10 @@ public class ParsingTest {
 		catch (FileNotFoundException e) 
 		{
 			fail("File " + inputFilePath + " not found");
+		}
+		catch (IOException e)
+		{
+			fail("The output file could not be created in the desired path, it's locked for writing or there's not enough space in the Hard Drive");
 		}
 		if(numberOfErrors > 0){
 			fail(numberOfErrors + " parsing errors occured");

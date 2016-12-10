@@ -14,24 +14,29 @@ import production.PolicyBuilder;
 public class PolicyOutputTest {
 	@Test
 	public void test() {
-		for(int i = 1; i <= 2; i ++){
-
-			String inputSentenceFilePath = "test/sentences/inputSentence" + i + ".txt";
+		
+		File inputFolder = new File("test/policyInputs/");
+		File[] listOfInputFiles = inputFolder.listFiles();
+		
+		File expectedOutputFolder = new File("test/expectedPolicyOutputs/");
+		File[] listOfExpectedOutputFiles = expectedOutputFolder.listFiles();
+		
+		for(int i = 0; i < listOfInputFiles.length; i ++){
 
 			try 
 			{
-				PolicyBuilder.generateJSONPolicies(inputSentenceFilePath);
+				PolicyBuilder.generateJSONPolicies(listOfInputFiles[i].getPath());
 			} 
 			catch (FileNotFoundException e) 
 			{
-				fail("Could not find the input sentence file in the specified path " + inputSentenceFilePath);
+				fail("Could not find the input sentence file in the specified path " + listOfInputFiles[i].getPath());
 			} 
 			catch (IOException e) 
 			{
 				fail("The output file could not be created in the desired path, it's locked for writing or there's not enough space in the Hard Drive");
 			}
 
-			String policyOutput = "";
+			String policyOutput = null;
 			String policyOutputFilePath = "src/output.json";
 			try 
 			{
@@ -43,14 +48,13 @@ public class PolicyOutputTest {
 			};
 
 			String expectedOutput = "";
-			String expectedOutputFilePath = "test/sentences/outputSentence" + i + ".txt";
 			try 
 			{
-				expectedOutput = new Scanner(new File(expectedOutputFilePath)).useDelimiter("\\Z").next().replace(" ", "").replace("\n", "").replace("\r", "");
+				expectedOutput = new Scanner(new File(listOfExpectedOutputFiles[i].getPath())).useDelimiter("\\Z").next().replace(" ", "").replace("\n", "").replace("\r", "");
 			} 
 			catch (FileNotFoundException e) 
 			{
-				fail("Could not find the expected output file in the specified path " + expectedOutputFilePath);
+				fail("Could not find the expected output file in the specified path " + listOfExpectedOutputFiles[i].getPath());
 			}
 
 			if(!policyOutput.equals(expectedOutput))

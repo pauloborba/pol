@@ -15,13 +15,16 @@ public class PolicyNumberTest {
 
 	@Test
 	public void test() {
-
-		for(int j = 1; j <= 3; j++){
+		
+		File folder = new File("test/numberOfPoliciesTestSentences/");
+		File[] listOfFiles = folder.listFiles();
+		
+		for(int j = 0; j < listOfFiles.length ; j++){
 			
 			int numberOfInputPolicies = 0;
 			int numberOfOutputPolicies = 0;
 			String policyInput = "";
-			String policyInputFilePath = "test/sentences/sentences" + j + ".txt";
+			String policyInputFilePath = listOfFiles[j].getPath();
 			
 			try 
 			{
@@ -40,15 +43,13 @@ public class PolicyNumberTest {
 				}
 			}
 			
-			String desiredOutputFilePath = "test/sentences/sentences" + j + ".txt";
-			
 			try 
 			{
-				PolicyBuilder.generateJSONPolicies(desiredOutputFilePath);
+				PolicyBuilder.generateJSONPolicies(policyInputFilePath);
 			} 
 			catch (FileNotFoundException e) 
 			{
-				fail("Could not find the file in the specified path " + desiredOutputFilePath);
+				fail("Could not find the file in the specified path " + policyInputFilePath);
 			} catch (IOException e) 
 			{
 				fail("The output file could not be created in the desired path, it's locked for writing or there's not enough space in the Hard Drive");
