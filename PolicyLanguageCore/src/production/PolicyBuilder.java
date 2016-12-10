@@ -29,7 +29,7 @@ public class PolicyBuilder {
 	private static RuleContext tree;
 	private static PoLBaseVisitor visitor;
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 
 		String inputFilePath = args[0];
 
