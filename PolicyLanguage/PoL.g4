@@ -47,11 +47,7 @@ contribution_id : string_literal;
 
 commit_hash : string_literal;
 
-string_literal : '"'string_characters?'"' | '"'('\u0023'string_characters)?'"' ; // -->  handling of "#issue"
-
-string_characters : input_string(input_string)*; // --> supports whitespace, but will separate in input_strings, concatenation will be handled in code
-
-input_string : ID;
+string_literal : STRING;
 
 clazz : ID | TYPE_NAME;
 
@@ -61,5 +57,6 @@ ID :    LETTER(LETTER|DIGIT)*;
 METHOD_NAME :  ID('.'ID)*('('')');
 TYPE_NAME :  ID('.'ID)*;
 LETTER: [a-zA-Z];
+STRING : '"' ~('\r' | '\n' | '"')* '"';
 DIGIT:  [0-9];
 WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines

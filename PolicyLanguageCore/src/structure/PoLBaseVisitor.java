@@ -56,8 +56,6 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 	
 	@Override public T visitContribution_spec(@NotNull PoLParser.Contribution_specContext ctx) { return visitChildren(ctx); }
 	
-	@Override public T visitString_characters(@NotNull PoLParser.String_charactersContext ctx) { return visitChildren(ctx); }
-	
 	@Override public T visitProgram_parts(@NotNull PoLParser.Program_partsContext ctx) { return visitChildren(ctx); }
 	
 	@Override public T visitCommit_hash(@NotNull PoLParser.Commit_hashContext ctx) { return visitChildren(ctx); }
@@ -73,8 +71,6 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 	@Override public T visitSensitive_fields(@NotNull PoLParser.Sensitive_fieldsContext ctx) { return visitChildren(ctx); }
 	
 	@Override public T visitContribution_id(@NotNull PoLParser.Contribution_idContext ctx) { return visitChildren(ctx); }
-	
-	@Override public T visitInput_string(@NotNull PoLParser.Input_stringContext ctx) { return visitChildren(ctx); }
 	
 	@Override public T visitArgument_list(@NotNull PoLParser.Argument_listContext ctx) { return visitChildren(ctx); }
 	
