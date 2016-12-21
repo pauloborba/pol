@@ -1,2 +1,2 @@
-Find noset Notepad {textPane};
+Find noset Notepad {textPane}
 

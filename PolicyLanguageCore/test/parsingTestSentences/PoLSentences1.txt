@@ -1,0 +1,5 @@
+teammates.common.datatransfer.FeedbackResponseAttributes {giver,recipient} noflow WriteOperation
+  where WriteOperation = {severe(),warning(),initUsingAppLogMessage(),initAsFailure(),info()};
+
+model.security.Credentials {token,secret} noflow UnreliableMemberTask 
+ where UnreliableMemberTask= {c | c.author("Will Moffat")}

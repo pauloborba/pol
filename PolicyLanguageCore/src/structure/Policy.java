@@ -7,11 +7,13 @@ public class Policy {
 	private ArrayList<String> modules;
 	private ArrayList<PoLClass> clazzes;
 	private String construct;
+	private String policyType;
 	
 	public Policy()
 	{
 		modules = new ArrayList<String>();
 		clazzes = new ArrayList<PoLClass>();
+		policyType = "";
 	}
 	
 	public void addModule(String module)
@@ -21,6 +23,16 @@ public class Policy {
 
 	public ArrayList<String> getModules() {
 		return modules;
+	}
+	
+	public void setPolicyType(String type)
+	{
+		policyType = type;
+	}
+	
+	public String getPolicyType()
+	{
+		return policyType;
 	}
 
 	public void addClass(PoLClass clazz)

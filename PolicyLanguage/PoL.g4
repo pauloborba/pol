@@ -4,30 +4,62 @@ grammar PoL;
     package structure;
 }
 
-prog : constraint_declaration*;
+program : (constraint_declaration(';'program)*) | (constant_declaration(';'program)*) ;
 
-constraint_declaration : (constraint ';');
+constraint_declaration : sensitive_info 'noflow' module where_clause?
+						| module 'noset' sensitive_info where_clause?; 
 
-constraint : sensitive_info 'noflow' module where_clause?
-                  | module 'noset' sensitive_info where_clause?;
+where_clause : 'where' constant_declaration;
 
-sensitive_info : sensitive_fields (',' sensitive_fields)*;
+constant_declaration : ID '=' sensitive_info | ID '=' module;
 
-where_clause : 'where' module '=' '{' program_parts '}';
+module : ID | '{' program_parts '}';
+
+sensitive_info : ID | sensitive_fields(','sensitive_fields)*;
 
 sensitive_fields : clazz '{' fields '}';
 
-clazz : ID | PROG_PART;
+program_parts : method_set
+			  | ID '|' contribution_expression
+			  | commit_hash (',' commit_hash)*;
 
-module : ID;
+method_set : method_name (',' method_name)*;
+
+contribution_expression : contribution_spec
+                        | contribution_expression '&&' contribution_expression
+                        | contribution_expression '||' contribution_expression;
+
+contribution_spec : method_invocation;
+
+method_invocation : method_name'('argument_list')'('.'method_invocation)*;
+
+method_name : ambiguous_name;
+
+ambiguous_name : TYPE_NAME | METHOD_NAME;
+
+argument_list : argument(','argument)*;
+
+argument : author_id |contribution_id ;
+
+author_id : string_literal;
+
+contribution_id : string_literal;
+
+commit_hash : string_literal;
+
+string_literal : '"'string_characters?'"' | '"'('\u0023'string_characters)?'"' ; // -->  handling of "#issue"
+
+string_characters : input_string(input_string)*; // --> supports whitespace, but will separate in input_strings, concatenation will be handled in code
+
+input_string : ID;
+
+clazz : ID | TYPE_NAME;
 
 fields  : ID(','ID)*;
 
-program_parts: PROG_PART(','PROG_PART)*;
-
-ID :    LETTER(LETTER|DIGIT)*;             // match lower-case identifiers
-PROG_PART :  ID('.'ID)*('('')')?;
+ID :    LETTER(LETTER|DIGIT)*; 
+METHOD_NAME :  ID('.'ID)*('('')');
+TYPE_NAME :  ID('.'ID)*;
 LETTER: [a-zA-Z];
 DIGIT:  [0-9];
-
 WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines

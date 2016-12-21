@@ -65,7 +65,7 @@ public class PolicyBuilder {
 
 			try {
 				currentPolicyJSONString = fromPolicyToJSONString(currentPolicyJSONStructuringObject, policies.get(i));
-				finalOutput += currentPolicyJSONString + ";";
+				finalOutput += currentPolicyJSONString + ",";
 			} 
 			catch (JSONException e) 
 			{
@@ -73,7 +73,9 @@ public class PolicyBuilder {
 			}
 
 		}
-
+		
+		System.out.println(tree.toStringTree(parser));
+		
 		fromJSONStringsToTextFile(finalOutput);
 
 		return numberOfErrors;
@@ -170,7 +172,7 @@ public class PolicyBuilder {
 
 		parser.setBuildParseTree(true);
 
-		tree = parser.prog();
+		tree = parser.program();
 
 		tree.inspect(parser);
 
