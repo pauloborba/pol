@@ -65,7 +65,14 @@ public class PolicyBuilder {
 
 			try {
 				currentPolicyJSONString = fromPolicyToJSONString(currentPolicyJSONStructuringObject, policies.get(i));
-				finalOutput += currentPolicyJSONString + ",";
+				if(i < policies.size() - 1)
+				{
+					finalOutput += currentPolicyJSONString + ",";
+				}
+				else
+				{
+					finalOutput += currentPolicyJSONString;
+				}
 			} 
 			catch (JSONException e) 
 			{
