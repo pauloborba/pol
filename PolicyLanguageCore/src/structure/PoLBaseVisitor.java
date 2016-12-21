@@ -18,11 +18,6 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		policies = new ArrayList<Policy>();
 	}
 	
-	public ArrayList<Policy> getPolicies()
-	{
-		return policies;
-	}
-	
 	@Override public T visitConstant_declaration(@NotNull PoLParser.Constant_declarationContext ctx) { return visitChildren(ctx); }
 	
 	@Override public T visitWhere_clause(@NotNull PoLParser.Where_clauseContext ctx) { return visitChildren(ctx); }
@@ -104,4 +99,10 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		currentPolicy.addClass(currentClass);
 		return visitChildren(ctx); 
 	}
+	
+	public ArrayList<Policy> getPolicies()
+	{
+		return policies;
+	}
+	
 }
