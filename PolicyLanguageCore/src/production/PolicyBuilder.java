@@ -81,8 +81,6 @@ public class PolicyBuilder {
 
 		}
 		
-		System.out.println(tree.toStringTree(parser));
-		
 		fromJSONStringsToTextFile(finalOutput);
 
 		return numberOfErrors;
