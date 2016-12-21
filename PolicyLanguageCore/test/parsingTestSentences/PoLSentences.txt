@@ -1,2 +1,8 @@
-model.security.Credentials {token,secret} noflow UnreliableMemberTask 
- where UnreliableMemberTask= {c | c.author("unreliable") && c.message.contains("#issue99")}
+teammates.storage.entity.CourseStudent {registrationKey,email} noflow WriteOperation
+where WriteOperation = {severe(),warning()};Find noset Notepad {textPane};
+teammates.storage.entity.CourseStudent {registrationKey,email} noflow WriteOperation
+where WriteOperation = {severe(),warning()};
+User{login,name} noflow Log
+where Log = {org.slf4j.Logger};
+UserModel{password,email,location} noflow ServletsTask
+ where ServletsTask = {"efdb2b3d0","gfds78fd0df"}
