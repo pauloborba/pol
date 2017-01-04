@@ -37,21 +37,6 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		return visitChildren(ctx); 
 	}
 	
-	@Override public T visitMethod_set(@NotNull PoLParser.Method_setContext ctx) 
-	{ 
-		currentPolicy.setPolicyType("method_set");
-		return visitChildren(ctx); 
-	}
-	
-	@Override public T visitAmbiguous_name(@NotNull PoLParser.Ambiguous_nameContext ctx) 
-	{ 
-		if(currentPolicy.getPolicyType().equals("method_set"))
-		{
-			currentPolicy.addModule(ctx.getText());
-		}
-		return visitChildren(ctx); 
-	}
-	
 	@Override public T visitProgram(@NotNull PoLParser.ProgramContext ctx) { return visitChildren(ctx); }
 	
 	@Override public T visitContribution_spec(@NotNull PoLParser.Contribution_specContext ctx) { return visitChildren(ctx); }
@@ -62,11 +47,16 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 	
 	@Override public T visitSensitive_info(@NotNull PoLParser.Sensitive_infoContext ctx) { return visitChildren(ctx); }
 	
-	@Override public T visitString_literal(@NotNull PoLParser.String_literalContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethod_call(@NotNull PoLParser.Method_callContext ctx) { return visitChildren(ctx); }
 	
-	@Override public T visitMethod_invocation(@NotNull PoLParser.Method_invocationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFull_name(@NotNull PoLParser.Full_nameContext ctx) { return visitChildren(ctx); }
 	
-	@Override public T visitMethod_name(@NotNull PoLParser.Method_nameContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSingle_method_call(@NotNull PoLParser.Single_method_callContext ctx) 
+	{ 
+		currentPolicy.addModule(ctx.getText());
+		currentPolicy.setPolicyType("method_set");
+		return visitChildren(ctx); 
+	}
 	
 	@Override public T visitSensitive_fields(@NotNull PoLParser.Sensitive_fieldsContext ctx) { return visitChildren(ctx); }
 	

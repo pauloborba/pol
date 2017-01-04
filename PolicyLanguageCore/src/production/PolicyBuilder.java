@@ -78,7 +78,7 @@ public class PolicyBuilder {
 			{
 				System.out.println("Your JSON file could not be parsed because of the following error: " + e.getMessage() );
 			}
-
+			
 		}
 		
 		fromJSONStringsToTextFile(finalOutput);
@@ -93,7 +93,7 @@ public class PolicyBuilder {
 		if (!outputFile.exists()) {
 			outputFile.createNewFile();
 		}
-
+		
 		FileWriter filewriter = new FileWriter(outputFile.getAbsoluteFile());
 		BufferedWriter bufferedWriter = new BufferedWriter(filewriter);
 		bufferedWriter.write(languageJsonOutput);

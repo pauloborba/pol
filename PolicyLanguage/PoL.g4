@@ -4,58 +4,53 @@ grammar PoL;
     package structure;
 }
 
-program : (constraint_declaration(';'program)*) | (constant_declaration(';'program)*) ;
+program : (constraint_declaration|constant_declaration)(';'program)* ;
 
 constraint_declaration : sensitive_info 'noflow' module where_clause?
 						| module 'noset' sensitive_info where_clause?; 
 
-where_clause : 'where' constant_declaration;
+where_clause : 'where' constant_declaration (','constant_declaration)*;
 
-constant_declaration : ID '=' sensitive_info | ID '=' module;
+constant_declaration : ID '=' (sensitive_info | module);
 
-module : ID | '{' program_parts '}';
+module :  '{' program_parts '}' | ID ;
 
-sensitive_info : ID | sensitive_fields(','sensitive_fields)*;
+sensitive_info : sensitive_fields(','sensitive_fields)* | ID ;
 
 sensitive_fields : clazz '{' fields '}';
 
-program_parts : method_set
+program_parts : single_method_call (',' single_method_call)*
 			  | ID '|' contribution_expression
 			  | commit_hash (',' commit_hash)*;
 
-method_set : method_name (',' method_name)*;
-
 contribution_expression : contribution_spec
                         | contribution_expression '&&' contribution_expression
-                        | contribution_expression '||' contribution_expression;
+                        | contribution_expression '||' contribution_expression
+                        | '!' contribution_expression;
 
-contribution_spec : method_invocation;
+contribution_spec : method_call;
 
-method_invocation : method_name'('argument_list')'('.'method_invocation)*;
+method_call : single_method_call('.'method_call)*;
 
-method_name : ambiguous_name;
-
-ambiguous_name : TYPE_NAME | METHOD_NAME;
+single_method_call : full_name'('argument_list?')';
 
 argument_list : argument(','argument)*;
 
 argument : author_id |contribution_id ;
 
-author_id : string_literal;
+author_id : STRING;
 
-contribution_id : string_literal;
+contribution_id : STRING;
 
-commit_hash : string_literal;
+commit_hash : STRING;
 
-string_literal : STRING;
+clazz : full_name;
 
-clazz : ID | TYPE_NAME;
+full_name : ID('.'ID)*;
 
 fields  : ID(','ID)*;
 
-ID :    LETTER(LETTER|DIGIT)*; 
-METHOD_NAME :  ID('.'ID)*('('')');
-TYPE_NAME :  ID('.'ID)*;
+ID :    ('_'|'$'|LETTER)('_'|'$'|LETTER|DIGIT)*; 
 LETTER: [a-zA-Z];
 STRING : '"' ~('\r' | '\n' | '"')* '"';
 DIGIT:  [0-9];
