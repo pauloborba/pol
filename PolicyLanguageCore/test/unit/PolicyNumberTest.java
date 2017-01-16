@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import production.PolicyBuilder;
@@ -29,18 +30,12 @@ public class PolicyNumberTest {
 			try 
 			{
 				policyInput = new Scanner(new File(policyInputFilePath)).useDelimiter("\\Z").next();
+				numberOfInputPolicies = StringUtils.countMatches(policyInput, "noflow") + StringUtils.countMatches(policyInput, "noset");
+				
 			} 
 			catch (FileNotFoundException e1) 
 			{
 				fail("Could not find the file in the specified path " + policyInputFilePath);
-			}
-			
-			for(int i = 0; i < policyInput.length(); i++)
-			{
-				if(policyInput.charAt(i) == ';')
-				{
-					numberOfInputPolicies++;
-				}
 			}
 			
 			try 
@@ -58,13 +53,7 @@ public class PolicyNumberTest {
 			String policyOutput;
 			try {
 				policyOutput = new Scanner(new File("src/output.json")).useDelimiter("\\Z").next();
-				for(int i = 0; i < policyOutput.length(); i++)
-				{
-					if(policyOutput.charAt(i) == ';')
-					{
-						numberOfOutputPolicies++;
-					}
-				}
+				numberOfOutputPolicies = StringUtils.countMatches(policyOutput, "noflow") + StringUtils.countMatches(policyOutput, "noset");
 			} 
 			catch (FileNotFoundException e) 
 			{

@@ -1,5 +1,5 @@
 Find noset Notepad {textPane};
-UserModels{hue,lol,br} noflow Mac
-where Mac = {org.slf4j.Logger};
+teammates.storage.entity.CourseStudent {registrationKey,email} noflow WriteOperation
+where WriteOperation = {severe(),warning()};
 User{login,name} noflow Log
-where Log = {org.slf4j.Logger};
+where Log = {org.slf4j.Logger}

@@ -65,15 +65,22 @@ public class PolicyBuilder {
 
 			try {
 				currentPolicyJSONString = fromPolicyToJSONString(currentPolicyJSONStructuringObject, policies.get(i));
-				finalOutput += currentPolicyJSONString + ";";
+				if(i < policies.size() - 1)
+				{
+					finalOutput += currentPolicyJSONString + ",";
+				}
+				else
+				{
+					finalOutput += currentPolicyJSONString;
+				}
 			} 
 			catch (JSONException e) 
 			{
 				System.out.println("Your JSON file could not be parsed because of the following error: " + e.getMessage() );
 			}
-
+			
 		}
-
+		
 		fromJSONStringsToTextFile(finalOutput);
 
 		return numberOfErrors;
@@ -86,7 +93,7 @@ public class PolicyBuilder {
 		if (!outputFile.exists()) {
 			outputFile.createNewFile();
 		}
-
+		
 		FileWriter filewriter = new FileWriter(outputFile.getAbsoluteFile());
 		BufferedWriter bufferedWriter = new BufferedWriter(filewriter);
 		bufferedWriter.write(languageJsonOutput);
@@ -170,7 +177,7 @@ public class PolicyBuilder {
 
 		parser.setBuildParseTree(true);
 
-		tree = parser.prog();
+		tree = parser.program();
 
 		tree.inspect(parser);
 

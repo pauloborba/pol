@@ -1,2 +1,2 @@
 teammates.storage.entity.CourseStudent {registrationKey,email} noflow WriteOperation
-  where WriteOperation = {severe(),warning()};
+where WriteOperation = {severe(),warning()}

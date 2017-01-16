@@ -3,14 +3,10 @@ package structure;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.antlr.v4.runtime.BufferedTokenStream;
-import org.antlr.v4.runtime.TokenStream;
-//ANTLR visitor imports
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-//Visitor that stores the visited fields, classes and modules
 public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PoLVisitor<T> {
 	
 	private PoLClass currentClass;
@@ -22,19 +18,18 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		policies = new ArrayList<Policy>();
 	}
 	
-	@Override public T visitSensitive_info(@NotNull PoLParser.Sensitive_infoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitConstant_declaration(@NotNull PoLParser.Constant_declarationContext ctx) { return visitChildren(ctx); }
 	
 	@Override public T visitWhere_clause(@NotNull PoLParser.Where_clauseContext ctx) { return visitChildren(ctx); }
 	
-	@Override public T visitSensitive_fields(@NotNull PoLParser.Sensitive_fieldsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitArgument(@NotNull PoLParser.ArgumentContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitContribution_expression(@NotNull PoLParser.Contribution_expressionContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitModule(@NotNull PoLParser.ModuleContext ctx) { return visitChildren(ctx); }
 	
 	@Override public T visitConstraint_declaration(@NotNull PoLParser.Constraint_declarationContext ctx) 
 	{ 
-		return visitChildren(ctx); 
-	}
-	
-	//Starts a new Policy and add the construct to it
-	@Override public T visitConstraint(@NotNull PoLParser.ConstraintContext ctx) { 
 		currentPolicy = new Policy();
 		String construct = ctx.getChild(1).getText();
 		currentPolicy.setConstruct(construct);
@@ -42,28 +37,35 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		return visitChildren(ctx); 
 	}
 	
-	@Override public T visitProg(@NotNull PoLParser.ProgContext ctx) { return visitChildren(ctx); }
+	@Override public T visitProgram(@NotNull PoLParser.ProgramContext ctx) { return visitChildren(ctx); }
 	
-	//Add the modules to the current policy
-	@Override public T visitProgram_parts(@NotNull PoLParser.Program_partsContext ctx) 
+	@Override public T visitContribution_spec(@NotNull PoLParser.Contribution_specContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitProgram_parts(@NotNull PoLParser.Program_partsContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitCommit_hash(@NotNull PoLParser.Commit_hashContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitSensitive_info(@NotNull PoLParser.Sensitive_infoContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitMethod_call(@NotNull PoLParser.Method_callContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitFull_name(@NotNull PoLParser.Full_nameContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitSingle_method_call(@NotNull PoLParser.Single_method_callContext ctx) 
 	{ 
-		List<ParseTree> modules = ctx.children;
-		for(int i = 0; i < modules.size(); i++)
-		{
-			if(!modules.get(i).getText().equals(","))
-			{
-				currentPolicy.addModule(modules.get(i).getText());
-			}
-		}
+		currentPolicy.addModule(ctx.getText());
+		currentPolicy.setPolicyType("method_set");
 		return visitChildren(ctx); 
 	}
 	
-	@Override public T visitModule(@NotNull PoLParser.ModuleContext ctx) 
-	{ 
-		return visitChildren(ctx); 
-	}
+	@Override public T visitSensitive_fields(@NotNull PoLParser.Sensitive_fieldsContext ctx) { return visitChildren(ctx); }
 	
-	//Add the fields to the current class of the current policy
+	@Override public T visitContribution_id(@NotNull PoLParser.Contribution_idContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitArgument_list(@NotNull PoLParser.Argument_listContext ctx) { return visitChildren(ctx); }
+	
+	@Override public T visitAuthor_id(@NotNull PoLParser.Author_idContext ctx) { return visitChildren(ctx); }
+	
 	@Override public T visitFields(@NotNull PoLParser.FieldsContext ctx) 
 	{ 
 		List<ParseTree> fields = ctx.children;
@@ -77,9 +79,7 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		return visitChildren(ctx); 
 	}
 	
-	//Add the class to the current policy
-	@Override public T visitClazz(@NotNull PoLParser.ClazzContext ctx) 
-	{ 
+	@Override public T visitClazz(@NotNull PoLParser.ClazzContext ctx) {
 		currentClass = new PoLClass();
 		currentClass.setClassName(ctx.getText());
 		currentPolicy.addClass(currentClass);
