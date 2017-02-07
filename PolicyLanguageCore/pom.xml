@@ -5,10 +5,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
   	<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
-</dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.12</version>
+	</dependency>
 	<dependency>
     	<groupId>org.json</groupId>
     	<artifactId>json</artifactId>
@@ -19,7 +19,12 @@
     <artifactId>commons-lang3</artifactId>
     <version>3.5</version>
 	</dependency>
-</dependencies>
+	<dependency>
+    	<groupId>org.antlr</groupId>
+    	<artifactId>antlr4-runtime</artifactId>
+    	<version>4.5</version>
+	</dependency>
+  </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>test</testSourceDirectory>
