@@ -22,7 +22,7 @@ sensitive_fields : clazz '{' fields '}';
 program_parts : single_method_call (',' single_method_call)*
 			  | ID '|' contribution_expression
 			  | commit_hash (',' commit_hash)*;
-
+			  
 contribution_expression : contribution_spec
                         | contribution_expression '&&' contribution_expression
                         | contribution_expression '||' contribution_expression
