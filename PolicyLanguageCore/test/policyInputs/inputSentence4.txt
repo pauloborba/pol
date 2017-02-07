@@ -1,2 +1,0 @@
-UserModel{password,email,location} noflow ServletsTask
-where ServletsTask = {"efdb2b3d0","gfds78fd0df"}

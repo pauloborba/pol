@@ -26,7 +26,6 @@ public class PolicyOutputTest {
 			try 
 			{
 				PolicyBuilder.generateJSONPolicies(listOfInputFiles[i].getPath());
-				wait(2000);
 			} 
 			catch (FileNotFoundException e) 
 			{
@@ -36,10 +35,7 @@ public class PolicyOutputTest {
 			{
 				fail("The output file could not be created in the desired path, it's locked for writing or there's not enough space in the Hard Drive");
 			} 
-			catch (InterruptedException e) 
-			{
-				fail("Something interrupted the test");
-			}
+			
 
 			String policyOutput = null;
 			String policyOutputFilePath = "src/output.json";
