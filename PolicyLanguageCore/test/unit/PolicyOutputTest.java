@@ -59,6 +59,8 @@ public class PolicyOutputTest {
 
 			if(!policyOutput.equals(expectedOutput))
 			{
+				System.out.println(policyOutput);
+				System.out.println(expectedOutput);
 				fail("The program output is not equal to the expected output");
 			}
 		}
