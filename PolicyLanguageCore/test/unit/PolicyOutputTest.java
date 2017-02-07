@@ -26,6 +26,7 @@ public class PolicyOutputTest {
 			try 
 			{
 				PolicyBuilder.generateJSONPolicies(listOfInputFiles[i].getPath());
+			
 			} 
 			catch (FileNotFoundException e) 
 			{
@@ -59,7 +60,8 @@ public class PolicyOutputTest {
 
 			if(!policyOutput.equals(expectedOutput))
 			{
-				System.out.println(policyOutput);
+				System.out.println(listOfExpectedOutputFiles[i].getPath());
+				System.out.println(policyOutput );
 				System.out.println(expectedOutput);
 				fail("The program output is not equal to the expected output");
 			}
