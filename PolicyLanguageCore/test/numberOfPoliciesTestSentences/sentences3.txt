@@ -1,5 +1,3 @@
 Find noset Notepad {textPane};
 teammates.storage.entity.CourseStudent {registrationKey,email} noflow WriteOperation
 where WriteOperation = {severe(),warning()};
-User{login,name} noflow Log
-where Log = {org.slf4j.Logger}
