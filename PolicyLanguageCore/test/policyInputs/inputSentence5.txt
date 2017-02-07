@@ -1,2 +1,0 @@
-model.security.Credentials {token,secret} noflow UnreliableMemberTask 
- where UnreliableMemberTask= {c | c.author("unreliable") && c.message.contains("#issue99")}
