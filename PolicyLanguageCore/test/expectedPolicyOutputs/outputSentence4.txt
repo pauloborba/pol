@@ -1,1 +1,1 @@
-[{"classes":{"fields":["password","email","location"],"class-name":"UserModel"},"construct":"noflow","modules":[{"identifiers":["efdb2b3d0","gfds78fd0df"]}]}, {"classes":{"fields":["registrationKey","email"],"class-name":"teammates.storage.entity.CourseStudent"},"construct":"noflow","modules":[{"identifiers":["severe()","warning()"]}]}]
+[{"classes":{"fields":["password","email","location"],"class-name":"UserModel"},"construct":"noflow","modules":[{"identifiers":["efdb2b3d0","gfds78fd0df"]}]}]

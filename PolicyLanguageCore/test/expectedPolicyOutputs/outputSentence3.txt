@@ -1,1 +1,1 @@
-[{"classes":{"fields":["token","secret"],"class-name":"model.security.Credentials"},"construct":"noflow","modules":[{"identifier":"c","method":"author","arguments":["Will Moffat"]}]}] 
+[{"classes":{"fields":["token","secret"],"class-name":"model.security.Credentials"},"construct":"noflow","modules":[{"identifier":"c","method":"author","arguments":["Will Moffat"]}]}]
