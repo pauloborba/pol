@@ -34,7 +34,8 @@ public class PolicyOutputTest {
 			catch (IOException e) 
 			{
 				fail("The output file could not be created in the desired path, it's locked for writing or there's not enough space in the Hard Drive");
-			}
+			} 
+			
 
 			String policyOutput = null;
 			String policyOutputFilePath = "src/output.json";

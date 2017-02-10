@@ -1,16 +1,1 @@
-{
-  "module": {
-  "identifiers": ["setCookie()"]
-  },
-  "classes": [
-  {
-  "fields": ["password", "locality"],
-  "class-name": "com.gitblit.models.UserModel"
-  },
-  {
-  "fields": ["email"],
-  "class-name": "com.gitblit.models.UserChoice"
-  }
-  ],
-  "construct": "noset"
-}
+[{"classes":{"fields":["token","secret"],"class-name":"model.security.Credentials"},"construct":"noflow","modules":[{"identifier":"c","method":"author","arguments":["Will Moffat"]}]}, {"classes":{"fields":["password","email","location"],"class-name":"UserModel"},"construct":"noflow","modules":[{"identifiers":["efdb2b3d0","gfds78fd0df"]}]}]
