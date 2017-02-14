@@ -1,5 +1,3 @@
-# pol
-Implementação de pol, linguagem de policy de segurança e privacidade
 
 <h1> Policy Language </h1>
 
@@ -52,8 +50,6 @@ Implementation of the pol language, a language of security and privacy policies
 
 <h3>IV - Run the Policy Language ore Project</h3>
 <ol>
-<li> Next > Put the project name "PolicyLanguageCore" > Finish</li>
-<li> Right Click on Project > Configure > Convert to Maven Project</li>
 <li> Copy all the files of <code> PolicyLanguage > target > generated-resources > antlr </code> except <code> PoLBaseVisitor.java </code> to <code> PolicyLanguageCore > src > structure</code></li>
 <li> Put your file path as argument when running the <code>PolicyBuilder.java</code> in <code> Run Configurations </code> </li>
 <li>Run the project</li>
