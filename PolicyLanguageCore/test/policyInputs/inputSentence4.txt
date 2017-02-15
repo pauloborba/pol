@@ -1,3 +1,0 @@
-teammates.storage.entity.Account {email}, teammates.storage.entity.AdminEmail {addressReceiver,subject,content}, teammates.storage.entity.CourseStudent {registrationKey,email}, teammates.storage.entity.FeedbackResponse {giverEmail}, teammates.storage.entity.FeedbackResponseComment {giverEmail,lastEditorEmail}
- noflow GUI
-	where GUI = {doGet(),doPost()} 
