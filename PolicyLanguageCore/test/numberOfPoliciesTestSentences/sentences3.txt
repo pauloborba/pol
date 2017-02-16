@@ -1,3 +1,4 @@
-Find noset Notepad {textPane};
+Cookie noset com.gitblit.models.UserModel {password,locality}, com.gitblit.models.UserChoice {email}
+where Cookie = {setCookie()};
 teammates.storage.entity.CourseStudent {registrationKey,email} noflow WriteOperation
 where WriteOperation = {severe(),warning()}

@@ -13,6 +13,7 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 	private ArrayList<JSONObject> policiesOutput;
 	private JSONObject currentPolicy;
 	private JSONObject currentClass;
+	private JSONArray  currentClassesArray;
 	private JSONObject currentModule;
 	private JSONArray  currentModulesArray;
 
@@ -27,6 +28,8 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		{
 			currentPolicy = new JSONObject();
 			currentModulesArray = new JSONArray();
+			currentClassesArray = new JSONArray();
+			currentPolicy.put("classes", currentClassesArray);
 			currentPolicy.put("modules", currentModulesArray);
 
 			String construct_type = ctx.getChild(1).getText();
@@ -111,7 +114,7 @@ public class PoLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Po
 		try 
 		{
 			currentClass.put("class-name", ctx.getText());
-			currentPolicy.put("classes", currentClass);
+			currentClassesArray.put(currentClass);
 		} 
 		catch (JSONException e) 
 		{
